@@ -5,13 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 public class CCCWebView extends AppCompatActivity {
 
     WebView webview;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,17 +23,18 @@ public class CCCWebView extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mProgressBar = (ProgressBar) findViewById(R.id.pb);
+        mProgressBar.setVisibility(View.VISIBLE);
         webview = (WebView) findViewById(R.id.webView);
         webview.setWebChromeClient(new WebChromeClient() {
-            public void onProgressChanged(WebView view, int progress)
+            public void onProgressChanged(WebView view, int newProgress)
             {
                 //Make the bar disappear after URL is loaded, and changes string to Loading...
-                setTitle("Loading...");
-                setProgress(progress * 100); //Make the bar disappear after URL is loaded
-
-                // Return the app name after finish loading
-                if(progress == 100)
-                    setTitle("CCA");
+                mProgressBar.setProgress(newProgress);
+                if(newProgress == 100){
+                    // Hide the progressbar
+                    mProgressBar.setVisibility(View.GONE);
+                }
             }
         });
         webview.setWebViewClient(new MyBrowser());

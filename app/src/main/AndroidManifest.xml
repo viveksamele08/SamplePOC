@@ -24,7 +24,7 @@
         </activity>
         <activity
             android:name=".CCCWebView"
-            android:label="WebView"
+            android:label="Exam Results"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LoginActivity"
