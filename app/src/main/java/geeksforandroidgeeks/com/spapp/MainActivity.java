@@ -19,9 +19,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener ,View.OnClickListener{
+        implements View.OnClickListener{
 
-    private TextView mTextMessage, home, feedback, faq, aboutSp;
+    private TextView home, feedback, faq, aboutSp;
     private ImageView close;
     private DrawerLayout drawer;
 
@@ -32,13 +32,11 @@ public class MainActivity extends AppCompatActivity
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
+                    getSupportFragmentManager().beginTransaction().add(R.id.content, new HomeFragment(),"Home").addToBackStack(null).commit();
+                              return true;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
                     return true;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
                     return true;
             }
             return false;
@@ -56,7 +54,6 @@ public class MainActivity extends AppCompatActivity
 
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mTextMessage = (TextView) findViewById(R.id.message);
         home = (TextView) findViewById(R.id.home);
         faq = (TextView) findViewById(R.id.faq);
         feedback = (TextView) findViewById(R.id.feedback);
@@ -69,6 +66,7 @@ public class MainActivity extends AppCompatActivity
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setSelectedItemId(R.id.navigation_home);
 
         close = (ImageView) findViewById(R.id.close);
 
@@ -87,7 +85,6 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +95,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        getSupportFragmentManager().beginTransaction().add(R.id.content, new HomeFragment(),"Home").addToBackStack(null).commit();
     }
 
     @Override
@@ -132,30 +128,6 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 
     @Override
     public void onClick(View view) {
@@ -164,21 +136,33 @@ public class MainActivity extends AppCompatActivity
             feedback.setTypeface(null, Typeface.NORMAL);
             faq.setTypeface(null, Typeface.NORMAL);
             aboutSp.setTypeface(null, Typeface.NORMAL);
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            }
         } else if (view.getId() == R.id.feedback) {
             home.setTypeface(null, Typeface.NORMAL);
             feedback.setTypeface(null, Typeface.BOLD);
             faq.setTypeface(null, Typeface.NORMAL);
             aboutSp.setTypeface(null, Typeface.NORMAL);
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            }
         } else if (view.getId() == R.id.faq) {
             home.setTypeface(null, Typeface.NORMAL);
             feedback.setTypeface(null, Typeface.NORMAL);
             faq.setTypeface(null, Typeface.BOLD);
             aboutSp.setTypeface(null, Typeface.NORMAL);
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            }
         } else if (view.getId() == R.id.aboutSP) {
             home.setTypeface(null, Typeface.NORMAL);
             feedback.setTypeface(null, Typeface.NORMAL);
             faq.setTypeface(null, Typeface.NORMAL);
             aboutSp.setTypeface(null, Typeface.BOLD);
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            }
         }
     }
 }
