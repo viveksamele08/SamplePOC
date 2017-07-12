@@ -1,5 +1,6 @@
 package geeksforandroidgeeks.com.spapp;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -14,12 +15,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener ,View.OnClickListener{
 
-    private TextView mTextMessage;
+    private TextView mTextMessage, home, feedback, faq, aboutSp;
+    private ImageView close;
+    private DrawerLayout drawer;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -51,9 +55,22 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         mTextMessage = (TextView) findViewById(R.id.message);
+        home = (TextView) findViewById(R.id.home);
+        faq = (TextView) findViewById(R.id.faq);
+        feedback = (TextView) findViewById(R.id.feedback);
+        aboutSp = (TextView) findViewById(R.id.aboutSP);
+
+        home.setOnClickListener(this);
+        faq.setOnClickListener(this);
+        feedback.setOnClickListener(this);
+        aboutSp.setOnClickListener(this);
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        close = (ImageView) findViewById(R.id.close);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +81,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -72,11 +88,21 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                }
+            }
+        });
+
+        getSupportFragmentManager().beginTransaction().add(R.id.content, new HomeFragment(),"Home").addToBackStack(null).commit();
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -129,5 +155,30 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.home) {
+            home.setTypeface(null, Typeface.BOLD);
+            feedback.setTypeface(null, Typeface.NORMAL);
+            faq.setTypeface(null, Typeface.NORMAL);
+            aboutSp.setTypeface(null, Typeface.NORMAL);
+        } else if (view.getId() == R.id.feedback) {
+            home.setTypeface(null, Typeface.NORMAL);
+            feedback.setTypeface(null, Typeface.BOLD);
+            faq.setTypeface(null, Typeface.NORMAL);
+            aboutSp.setTypeface(null, Typeface.NORMAL);
+        } else if (view.getId() == R.id.faq) {
+            home.setTypeface(null, Typeface.NORMAL);
+            feedback.setTypeface(null, Typeface.NORMAL);
+            faq.setTypeface(null, Typeface.BOLD);
+            aboutSp.setTypeface(null, Typeface.NORMAL);
+        } else if (view.getId() == R.id.aboutSP) {
+            home.setTypeface(null, Typeface.NORMAL);
+            feedback.setTypeface(null, Typeface.NORMAL);
+            faq.setTypeface(null, Typeface.NORMAL);
+            aboutSp.setTypeface(null, Typeface.BOLD);
+        }
     }
 }
