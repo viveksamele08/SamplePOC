@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    getSupportFragmentManager().beginTransaction().add(R.id.content, new HomeFragment(),"Home").addToBackStack(null).commit();
+                    getSupportFragmentManager().beginTransaction().add(R.id.content, new HomeFragment(),"Home").commit();
                               return true;
                 case R.id.navigation_dashboard:
                     return true;
