@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-    <resources>
+<resources>
     <string name="app_name">SPApp</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -39,5 +39,9 @@
     <string name="error_field_required">This field is required</string>
 
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions." </string>
+
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 </resources>
