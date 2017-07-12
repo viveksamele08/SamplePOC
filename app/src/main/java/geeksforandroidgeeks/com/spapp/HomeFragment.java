@@ -43,14 +43,30 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         staff_calendar = (TextView) view.findViewById(R.id.staff_calendar);
         staff_timetable = (TextView) view.findViewById(R.id.staff_timetable);
         ccc.setOnClickListener(this);
+        acad_calendar.setOnClickListener(this);
+        exam_timetable.setOnClickListener(this);
+        library.setOnClickListener(this);
+        live_cam.setOnClickListener(this);
+        feedback.setOnClickListener(this);
+        wassup.setOnClickListener(this);
+        exam_results.setOnClickListener(this);
+        timetable.setOnClickListener(this);
+        staff_directory.setOnClickListener(this);
+        staff_calendar.setOnClickListener(this);
+        staff_timetable.setOnClickListener(this);
         return view;
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.ccc:
+            case R.id.exam_results:
                 startActivity(new Intent(getActivity(), CCCWebView.class));
+                break;
+            case R.id.library:
+                Uri uri = Uri.parse("https://library.sp.edu.sg/");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
                 break;
         }
     }

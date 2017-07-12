@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity
     private TextView home, feedback, faq, aboutSp;
     private ImageView close;
     private DrawerLayout drawer;
+    private FloatingActionButton fab;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -32,11 +33,16 @@ public class MainActivity extends AppCompatActivity
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    fab.setVisibility(View.VISIBLE);
                     getSupportFragmentManager().beginTransaction().add(R.id.content, new HomeFragment(),"Home").commit();
                               return true;
                 case R.id.navigation_dashboard:
+                    fab.setVisibility(View.GONE);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content, new DashboardFragment(),"Dash").commit();
                     return true;
                 case R.id.navigation_notifications:
+                    fab.setVisibility(View.GONE);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content, new NotificatrionsFragment(),"Notification").commit();
                     return true;
             }
             return false;
@@ -58,6 +64,7 @@ public class MainActivity extends AppCompatActivity
         faq = (TextView) findViewById(R.id.faq);
         feedback = (TextView) findViewById(R.id.feedback);
         aboutSp = (TextView) findViewById(R.id.aboutSP);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
 
         home.setOnClickListener(this);
         faq.setOnClickListener(this);
@@ -70,7 +77,6 @@ public class MainActivity extends AppCompatActivity
 
         close = (ImageView) findViewById(R.id.close);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,4 +171,5 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
+
 }

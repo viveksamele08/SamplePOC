@@ -35,7 +35,7 @@ public class CCCWebView extends AppCompatActivity {
         });
         webview.setWebViewClient(new MyBrowser());
         webview.getSettings().setJavaScriptEnabled(true);
-        webview.loadUrl("https://library.sp.edu.sg/");
+        webview.loadUrl("https://sso.sp.edu.sg/login");
 
     }
 
