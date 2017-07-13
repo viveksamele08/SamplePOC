@@ -111,7 +111,7 @@
                 android:gravity="center"
                 android:layout_weight="1"
                 android:drawablePadding="6dp"
-                android:text="LIVE CAM"
+                android:text="LIFE @ EEE"
                 android:id="@+id/live_cam"/>
 
             <TextView
