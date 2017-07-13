@@ -29,7 +29,7 @@
         android:layout_below="@+id/profile_image"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
-        android:text="Mrs Elizabeth A KHOO"
+        android:text="AXEL TEOH"
         android:textColor="@android:color/black"
         android:textSize="20sp" />
 

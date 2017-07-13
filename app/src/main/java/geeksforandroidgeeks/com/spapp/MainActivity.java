@@ -1,5 +1,6 @@
 package geeksforandroidgeeks.com.spapp;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity
         implements View.OnClickListener{
 
     private TextView home, feedback, faq, aboutSp;
-    private ImageView close;
+    private ImageView close, sign_out;
     private DrawerLayout drawer;
     private FloatingActionButton fab;
 
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(0xFFFFFFFF);
+        //toolbar.setTitleTextColor(0xFFFFFFFF);
         setSupportActionBar(toolbar);
 
 
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity
         feedback = (TextView) findViewById(R.id.feedback);
         aboutSp = (TextView) findViewById(R.id.aboutSP);
         fab = (FloatingActionButton) findViewById(R.id.fab);
+        sign_out = (ImageView) findViewById(R.id.sign_out);
 
         home.setOnClickListener(this);
         faq.setOnClickListener(this);
@@ -81,8 +83,8 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
             }
         });
 
@@ -99,6 +101,16 @@ public class MainActivity extends AppCompatActivity
                 if (drawer.isDrawerOpen(GravityCompat.START)) {
                     drawer.closeDrawer(GravityCompat.START);
                 }
+            }
+        });
+
+        sign_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
 

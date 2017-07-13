@@ -61,13 +61,65 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.exam_results:
-                startActivity(new Intent(getActivity(), CCCWebView.class));
+                Intent i = new Intent(getActivity(), CCCWebView.class);
+                i.putExtra("key","library");
+                startActivity(i);
                 break;
             case R.id.library:
                 Uri uri = Uri.parse("https://library.sp.edu.sg/");
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
                 break;
+            case R.id.live_cam:
+                Intent in = new Intent(getActivity(), CCCWebView.class);
+                in.putExtra("key","livecam");
+                startActivity(in);
+                break;
+          /*  case R.id.ccc:
+                Intent in1 = new Intent(getActivity(), CCCWebView.class);
+                in1.putExtra("key","livecam");
+                startActivity(in1);
+                break;
+            case R.id.acad_calendar:
+                Intent in2 = new Intent(getActivity(), CCCWebView.class);
+                in2.putExtra("key","livecam");
+                startActivity(in2);
+                break;
+            case R.id.exam_timetable:
+                Intent in3 = new Intent(getActivity(), CCCWebView.class);
+                in3.putExtra("key","livecam");
+                startActivity(in3);
+                break;
+            case R.id.feedback:
+                Intent in4 = new Intent(getActivity(), CCCWebView.class);
+                in4.putExtra("key","livecam");
+                startActivity(in4);
+                break;
+            case R.id.wassup:
+                Intent in5 = new Intent(getActivity(), CCCWebView.class);
+                in5.putExtra("key","livecam");
+                startActivity(in5);
+                break;
+            case R.id.time_table:
+                Intent in6 = new Intent(getActivity(), CCCWebView.class);
+                in6.putExtra("key","livecam");
+                startActivity(in6);
+                break;
+            case R.id.staff_calendar:
+                Intent in7 = new Intent(getActivity(), CCCWebView.class);
+                in7.putExtra("key","livecam");
+                startActivity(in7);
+                break;
+            case R.id.staff_directory:
+                Intent in8 = new Intent(getActivity(), CCCWebView.class);
+                in8.putExtra("key","livecam");
+                startActivity(in8);
+                break;
+            case R.id.staff_timetable:
+                Intent in9 = new Intent(getActivity(), CCCWebView.class);
+                in9.putExtra("key","livecam");
+                startActivity(in9);
+                break;*/
         }
     }
 }

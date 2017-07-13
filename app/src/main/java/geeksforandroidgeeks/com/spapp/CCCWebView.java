@@ -1,5 +1,6 @@
 package geeksforandroidgeeks.com.spapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -39,7 +40,16 @@ public class CCCWebView extends AppCompatActivity {
         });
         webview.setWebViewClient(new MyBrowser());
         webview.getSettings().setJavaScriptEnabled(true);
-        webview.loadUrl("https://sso.sp.edu.sg/login");
+        if(getIntent().getStringExtra("key").equals("library")){
+            webview.loadUrl("https://sso.sp.edu.sg/login");
+        }else if(getIntent().getStringExtra("key").contains("security")){
+            webview.loadUrl("https://sso.sp.edu.sg/login/help/securityinfo.html");
+        }else if(getIntent().getStringExtra("key").contains("orientation")){
+            webview.loadUrl("http://www.sp.edu.sg/wps/portal/vp-spws/scheee.lif.orientation");
+        }else if(getIntent().getStringExtra("key").contains("livecam")) {
+            webview.loadUrl("http://www.sp.edu.sg/wps/portal/vp-spws/!ut/p/a1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOJDPUxdjdxMTQz8Q7xMDTz9g10tnVwDjJydDPULsh0VAaQI1v8!/?WCM_GLOBAL_CONTEXT=");
+        }
+
 
     }
 

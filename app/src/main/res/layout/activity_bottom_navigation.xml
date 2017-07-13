@@ -31,7 +31,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="?android:attr/windowBackground"
-        app:menu="@menu/navigation" />
+        app:itemBackground="@android:color/darker_gray"
+        app:itemIconTint="@drawable/bot_selec"
+        app:itemTextColor="@drawable/bot_selec"
+        app:menu="@menu/navigation"/>
 
 </LinearLayout>
