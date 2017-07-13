@@ -50,10 +50,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_stat_sp)
                 .setContentTitle("Singapore Polytechnic")
-                .setContentText(messageBody)
+                .setContentText("")
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
+
+
 
         //https://sso.sp.edu.sg/login/help/securityinfo.html
 
